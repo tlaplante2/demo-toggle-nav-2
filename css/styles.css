@@ -11,6 +11,7 @@ header {
     display: flex;
     flex-flow: wrap;
     justify-content: space-between;
+    /* position: relative; */
 }
 
 .toggle-btn {
@@ -46,11 +47,18 @@ nav {
 }
 
 header nav {
-    /* add CSS here */
+    max-height: 0; /* removes nav space but not text, like display none */
+    overflow: hidden; /* hides text*/
+    transition: max-height 0.5s ease-in-out; /*adds transition to nav when clicked*/
+    position: absolute; /* no longer a flex item and loses its background color */
+    top: 81px; /* put it below the header*/
+    left: 0;
+    background-color: rgba(255, 255, 255, 0.95);
+    width: 100vw; /* expands the entire width */
 }
 
 .show-nav {
-    /* add CSS here */
+    max-height: 22.5vh; /* reverses hidden overflow and allows js to work*/
 }
 
 /* ************ section ************ */
@@ -83,7 +91,14 @@ section h2 {
     }
 
     header nav {
-        /* add CSS here */
+        max-height: 100%; /* or max-height: unset; sets default */
+        flex: 0 1 auto;
+        position: static; /* resets nav to be at the top */
+        width: auto; /* overrides width and pushes it back to the right */
+    }
+
+    header {
+        flex-flow: nowrap;
     }
 
     ul.menu {
