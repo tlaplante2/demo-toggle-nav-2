@@ -8,10 +8,36 @@ body {
 header {
     background-color: #fff;
     padding: 1rem;
+}
+
+.flex-container { /* new parent for header*/
     display: flex;
     flex-flow: wrap;
-    justify-content: space-between;
-    /* position: relative; */
+    justify-content: space-between; /* changing direct parent to fix flex after media query 2*/
+}
+
+.gallery {
+    display: flex;
+    flex-flow: wrap;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.gallery > div {
+    position: relative; /* allows the position element "new" to stick to the img*/
+}
+
+span {
+    background-color: #87a6ab;
+    color: white;
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    border-radius: .3125rem;
+    position: absolute;
+    top: -25px;
+    right: -10px;
+    /* once we add the span as a positioned element, it overlaps our nav dropdown. 
+    use the z-index to name what elements get put on top. add to header nav */
 }
 
 .toggle-btn {
@@ -55,6 +81,7 @@ header nav {
     left: 0;
     background-color: rgba(255, 255, 255, 0.95);
     width: 100vw; /* expands the entire width */
+    z-index: 1; /* moves nav over our positioned element, "NEW" */
 }
 
 .show-nav {
@@ -69,11 +96,6 @@ section {
 }
 
 /* ***************** section ************ */
-section {
-    padding: 3.125rem;
-    text-align: center;
-    text-transform: uppercase;
-}
 
 section p {
     color: #d5e294;
@@ -82,6 +104,7 @@ section p {
 section h2 {
     color: #fff;
     font-size: 3.175rem;
+    margin-bottom: 1.5rem;
 }
 
 
@@ -91,10 +114,10 @@ section h2 {
     }
 
     header nav {
-        max-height: 100%; /* or max-height: unset; sets default */
+        max-height: 100%; /* or max-height: unset; sets default height for nav*/
         flex: 0 1 auto;
-        position: static; /* resets nav to be at the top */
-        width: auto; /* overrides width and pushes it back to the right */
+        position: static; /* resets nav to be at the top after messing with js dropdown */
+        width: auto; /* overrides width and pushes nav back to the right */
     }
 
     header {
@@ -109,4 +132,11 @@ section h2 {
     ul.menu a {
         padding: 0 0.75rem;
     }
+}
+
+@media screen and (min-width: 68.75rem) { 
+    .inner-container {
+        width: 68.75rem; /* adds fixed width to container to stop it growing*/
+        margin: 0 auto;
+    }   
 }
